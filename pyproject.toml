@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecg_waveform"
+version = "0.1.0"
+description = "Research framework for ECG PQRST fiducial point detection, signal quality assessment and adaptive delineation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Görözdi Attila", email = "gorozdiattila@gmail.com" }
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "PyYAML>=6.0",
+    "PyWavelets>=1.4",
+    "scikit-learn>=1.3",
+    "wfdb>=4.1",
+]
+
+[project.optional-dependencies]
+ml = [
+    "torch>=2.0",
+]
+
+visualization = [
+    "seaborn>=0.12",
+]
+
+notebooks = [
+    "jupyter",
+    "ipykernel",
+]
+
+dev = [
+    "pytest>=7.4",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+]
+
+[project.urls]
+Repository = "https://github.com/gorozdi-attila/ecg-waveform"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ecg_waveform*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
